@@ -1,11 +1,101 @@
 'use strict';
 
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof = function (obj) {
+      return typeof obj;
+    };
+  } else {
+    _typeof = function (obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return _typeof(obj);
+}
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+
+  return arr2;
+}
+
+function _createForOfIteratorHelper(o, allowArrayLike) {
+  var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"];
+
+  if (!it) {
+    if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
+      if (it) o = it;
+      var i = 0;
+
+      var F = function () {};
+
+      return {
+        s: F,
+        n: function () {
+          if (i >= o.length) return {
+            done: true
+          };
+          return {
+            done: false,
+            value: o[i++]
+          };
+        },
+        e: function (e) {
+          throw e;
+        },
+        f: F
+      };
+    }
+
+    throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+  }
+
+  var normalCompletion = true,
+      didErr = false,
+      err;
+  return {
+    s: function () {
+      it = it.call(o);
+    },
+    n: function () {
+      var step = it.next();
+      normalCompletion = step.done;
+      return step;
+    },
+    e: function (e) {
+      didErr = true;
+      err = e;
+    },
+    f: function () {
+      try {
+        if (!normalCompletion && it.return != null) it.return();
+      } finally {
+        if (didErr) throw err;
+      }
+    }
+  };
+}
+
 // https://stackoverflow.com/a/23024613/3150390
 
 /* c8 ignore start */
 function blobToString(b) {
-  const u = URL.createObjectURL(b);
-  const x = new XMLHttpRequest();
+  var u = URL.createObjectURL(b);
+  var x = new XMLHttpRequest();
   x.open("GET", u, false);
   x.send();
   URL.revokeObjectURL(u);
@@ -13,13 +103,13 @@ function blobToString(b) {
 }
 /* c8 ignore stop */
 
-const hasHeaders = typeof Headers !== "undefined";
-const hasBlob = typeof Blob !== "undefined";
-const hasBuffer = typeof Buffer !== "undefined";
-const hasURLSearchParams = typeof URLSearchParams !== "undefined"; // export type RequestRedirect = 'error' | 'follow' | 'manual';
+var hasHeaders = typeof Headers !== "undefined";
+var hasBlob = typeof Blob !== "undefined";
+var hasBuffer = typeof Buffer !== "undefined";
+var hasURLSearchParams = typeof URLSearchParams !== "undefined"; // export type RequestRedirect = 'error' | 'follow' | 'manual';
 
 function isRequest(object) {
-  return typeof object === "object";
+  return _typeof(object) === "object";
 }
 /**
  * Generate an http message string using the fetch API
@@ -33,30 +123,44 @@ function isRequest(object) {
 function fetchHttpMessage(input, init) {
   if (input === undefined) throw new Error("Input is expected");
   if (init === undefined) init = {};
-  let url;
+  var url;
   if (isRequest(input)) url = new URL(input.url);else {
     url = new URL(input);
     input = {};
   }
-  let method = init.method || input.method || "GET";
+  var method = init.method || input.method || "GET";
   method = method.toUpperCase();
-  const lines = [`${method} ${url.toString()} HTTP/1.1`];
-  const headers = init.headers || input.headers;
+  var lines = ["".concat(method, " ").concat(url.toString(), " HTTP/1.1")];
+  var headers = init.headers || input.headers;
 
   if (headers !== undefined) {
     /* c8 ignore start */
     if (hasHeaders && headers instanceof Headers) {
-      for (const pair of headers.entries()) lines.push(`${pair[0]}: ${pair[1]}`);
+      var _iterator = _createForOfIteratorHelper(headers.entries()),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var pair = _step.value;
+          lines.push("".concat(pair[0], ": ").concat(pair[1]));
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
     } else {
       /* c8 ignore stop */
-      for (const key in headers) lines.push(`${key}: ${headers[key]}`);
+      for (var _key in headers) {
+        lines.push("".concat(_key, ": ").concat(headers[_key]));
+      }
     }
   }
 
-  const body = init.body;
+  var body = init.body;
 
   if (body !== undefined) {
-    if (~["GET", "HEAD"].indexOf(method)) throw new Error(`Option body not valid with method ${method}`);
+    if (~["GET", "HEAD"].indexOf(method)) throw new Error("Option body not valid with method ".concat(method));
     /* c8 ignore start */
 
     if (hasBlob && body instanceof Blob) {
