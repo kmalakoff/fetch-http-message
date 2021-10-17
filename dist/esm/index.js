@@ -1,16 +1,4 @@
-// https://stackoverflow.com/a/23024613/3150390
-
-/* c8 ignore start */
-function blobToString(b) {
-  const u = URL.createObjectURL(b);
-  const x = new XMLHttpRequest();
-  x.open("GET", u, false);
-  x.send();
-  URL.revokeObjectURL(u);
-  return x.responseText;
-}
-/* c8 ignore stop */
-
+import blobToString from "./blobToString.js";
 const hasHeaders = typeof Headers !== "undefined";
 const hasBlob = typeof Blob !== "undefined";
 const hasBuffer = typeof Buffer !== "undefined";
@@ -28,17 +16,17 @@ function isRequest(object) {
  */
 
 
-function fetchHttpMessage(input, init) {
+export default function fetchHttpMessage(input, init) {
   if (input === undefined) throw new Error("Input is expected");
   if (init === undefined) init = {};
   let url;
-  if (isRequest(input)) url = new URL(input.url);else {
-    url = new URL(input);
+  if (isRequest(input)) url = input.url;else {
+    url = input;
     input = {};
   }
   let method = init.method || input.method || "GET";
   method = method.toUpperCase();
-  const lines = [`${method} ${url.toString()} HTTP/1.1`];
+  const lines = [`${method} ${url} HTTP/1.1`];
   const headers = init.headers || input.headers;
 
   if (headers !== undefined) {
@@ -74,6 +62,4 @@ function fetchHttpMessage(input, init) {
 
   return lines.join("\r\n");
 }
-
-export { fetchHttpMessage as default };
 //# sourceMappingURL=index.js.map

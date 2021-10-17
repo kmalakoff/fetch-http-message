@@ -128,13 +128,13 @@
     if (input === undefined) throw new Error("Input is expected");
     if (init === undefined) init = {};
     var url;
-    if (isRequest(input)) url = new URL(input.url);else {
-      url = new URL(input);
+    if (isRequest(input)) url = input.url;else {
+      url = input;
       input = {};
     }
     var method = init.method || input.method || "GET";
     method = method.toUpperCase();
-    var lines = ["".concat(method, " ").concat(url.toString(), " HTTP/1.1")];
+    var lines = ["".concat(method, " ").concat(url, " HTTP/1.1")];
     var headers = init.headers || input.headers;
 
     if (headers !== undefined) {

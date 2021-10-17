@@ -1,107 +1,21 @@
-'use strict';
+"use strict";
 
-function _typeof(obj) {
-  "@babel/helpers - typeof";
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = fetchHttpMessage;
 
-  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    _typeof = function (obj) {
-      return typeof obj;
-    };
-  } else {
-    _typeof = function (obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    };
-  }
+var _blobToString = _interopRequireDefault(require("./blobToString"));
 
-  return _typeof(obj);
-}
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function _unsupportedIterableToArray(o, minLen) {
-  if (!o) return;
-  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor) n = o.constructor.name;
-  if (n === "Map" || n === "Set") return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
-}
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
-function _arrayLikeToArray(arr, len) {
-  if (len == null || len > arr.length) len = arr.length;
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
-  for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-  return arr2;
-}
-
-function _createForOfIteratorHelper(o, allowArrayLike) {
-  var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"];
-
-  if (!it) {
-    if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
-      if (it) o = it;
-      var i = 0;
-
-      var F = function () {};
-
-      return {
-        s: F,
-        n: function () {
-          if (i >= o.length) return {
-            done: true
-          };
-          return {
-            done: false,
-            value: o[i++]
-          };
-        },
-        e: function (e) {
-          throw e;
-        },
-        f: F
-      };
-    }
-
-    throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-  }
-
-  var normalCompletion = true,
-      didErr = false,
-      err;
-  return {
-    s: function () {
-      it = it.call(o);
-    },
-    n: function () {
-      var step = it.next();
-      normalCompletion = step.done;
-      return step;
-    },
-    e: function (e) {
-      didErr = true;
-      err = e;
-    },
-    f: function () {
-      try {
-        if (!normalCompletion && it.return != null) it.return();
-      } finally {
-        if (didErr) throw err;
-      }
-    }
-  };
-}
-
-// https://stackoverflow.com/a/23024613/3150390
-
-/* c8 ignore start */
-function blobToString(b) {
-  var u = URL.createObjectURL(b);
-  var x = new XMLHttpRequest();
-  x.open("GET", u, false);
-  x.send();
-  URL.revokeObjectURL(u);
-  return x.responseText;
-}
-/* c8 ignore stop */
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 var hasHeaders = typeof Headers !== "undefined";
 var hasBlob = typeof Blob !== "undefined";
@@ -124,13 +38,13 @@ function fetchHttpMessage(input, init) {
   if (input === undefined) throw new Error("Input is expected");
   if (init === undefined) init = {};
   var url;
-  if (isRequest(input)) url = new URL(input.url);else {
-    url = new URL(input);
+  if (isRequest(input)) url = input.url;else {
+    url = input;
     input = {};
   }
   var method = init.method || input.method || "GET";
   method = method.toUpperCase();
-  var lines = ["".concat(method, " ").concat(url.toString(), " HTTP/1.1")];
+  var lines = ["".concat(method, " ").concat(url, " HTTP/1.1")];
   var headers = init.headers || input.headers;
 
   if (headers !== undefined) {
@@ -165,7 +79,7 @@ function fetchHttpMessage(input, init) {
 
     if (hasBlob && body instanceof Blob) {
       lines.push("");
-      lines.push(blobToString(body));
+      lines.push((0, _blobToString["default"])(body));
     } else if (
     /* c8 ignore stop */
     typeof body === "string" || body instanceof String ||
@@ -181,5 +95,5 @@ function fetchHttpMessage(input, init) {
   return lines.join("\r\n");
 }
 
-module.exports = fetchHttpMessage;
+module.exports = exports.default;
 //# sourceMappingURL=index.js.map
