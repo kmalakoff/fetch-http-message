@@ -50,15 +50,15 @@ export default function fetchHttpMessage(input: RequestInfo, init?: RequestInit)
   if (init === undefined) init = {};
 
   let url;
-  if (isRequest(input)) url = new URL((input as Request).url);
+  if (isRequest(input)) url = (input as Request).url;
   else {
-    url = new URL(input as string);
+    url = input as string;
     input = {} as Request;
   }
 
   let method = init.method || (input as Request).method || "GET";
   method = method.toUpperCase();
-  const lines = [`${method} ${url.toString()} HTTP/1.1`];
+  const lines = [`${method} ${url} HTTP/1.1`];
 
   const headers = init.headers || (input as Request).headers;
   if (headers !== undefined) {

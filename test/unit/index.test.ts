@@ -101,6 +101,13 @@ describe("fetch-http-message", function () {
 
     typeof Buffer === "undefined" ||
       it("Buffer body", function () {
+        if (!Buffer.alloc) {
+          Buffer.alloc = function alloc(length: number, data: string) {
+            let buffer = data;
+            while (--length > 0) buffer += data;
+            return new Buffer(buffer);
+          };
+        }
         const message = fetchMessage(url, {
           method: "POST",
           body: Buffer.alloc(5, "a"),
