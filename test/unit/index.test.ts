@@ -91,7 +91,7 @@ describe("fetch-http-message", function () {
       assert.equal(message, [`POST ${url} HTTP/1.1`, "", "post-body"].join("\r\n"));
     });
 
-    typeof Blob === "undefined" ||
+    typeof Blob === "undefined" || typeof XMLHttpRequest === 'undefined' ||
       it("Blob body", function () {
         const message = fetchMessage(url, {
           method: "POST",
