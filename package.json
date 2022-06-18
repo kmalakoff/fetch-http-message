@@ -50,8 +50,8 @@
     "typescript"
   ],
   "devDependencies": {
-    "@types/node": "^16.11.1",
-    "ts-dev-stack": "^0.1.5"
+    "@types/node": "^18.0.0",
+    "ts-dev-stack": "^0.1.7"
   },
   "engines": {
     "node": ">=0.8"
