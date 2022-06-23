@@ -1,7 +1,7 @@
 {
   "name": "fetch-http-message",
   "description": "Generate an http message string using the fetch API",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "author": {
     "email": "kmalakoff@gmail.com",
     "name": "Kevin Malakoff",
