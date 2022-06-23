@@ -10,4 +10,4 @@ export default function blobToString(b) {
   return x.responseText;
 }
 /* c8 ignore stop */
-//# sourceMappingURL=blobToString.js.map
+//# sourceMappingURL=blobToString.mjs.map

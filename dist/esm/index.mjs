@@ -1,4 +1,4 @@
-import blobToString from "./blobToString.js";
+import blobToString from "./blobToString.mjs";
 const hasHeaders = typeof Headers !== "undefined";
 const hasBlob = typeof Blob !== "undefined";
 const hasBuffer = typeof Buffer !== "undefined";
@@ -62,4 +62,4 @@ export default function fetchHttpMessage(input, init) {
 
   return lines.join("\r\n");
 }
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.mjs.map
