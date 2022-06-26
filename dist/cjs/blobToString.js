@@ -11,7 +11,7 @@ exports["default"] = blobToString;
 function blobToString(b) {
   var u = URL.createObjectURL(b);
   var x = new XMLHttpRequest();
-  x.open("GET", u, false);
+  x.open('GET', u, false);
   x.send();
   URL.revokeObjectURL(u);
   return x.responseText;

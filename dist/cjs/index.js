@@ -17,13 +17,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
-var hasHeaders = typeof Headers !== "undefined";
-var hasBlob = typeof Blob !== "undefined";
-var hasBuffer = typeof Buffer !== "undefined";
-var hasURLSearchParams = typeof URLSearchParams !== "undefined"; // export type RequestRedirect = 'error' | 'follow' | 'manual';
+var hasHeaders = typeof Headers !== 'undefined';
+var hasBlob = typeof Blob !== 'undefined';
+var hasBuffer = typeof Buffer !== 'undefined';
+var hasURLSearchParams = typeof URLSearchParams !== 'undefined'; // export type RequestRedirect = 'error' | 'follow' | 'manual';
 
 function isRequest(object) {
-  return _typeof(object) === "object";
+  return _typeof(object) === 'object';
 }
 /**
  * Generate an http message string using the fetch API
@@ -35,14 +35,14 @@ function isRequest(object) {
 
 
 function fetchHttpMessage(input, init) {
-  if (input === undefined) throw new Error("Input is expected");
+  if (input === undefined) throw new Error('Input is expected');
   if (init === undefined) init = {};
   var url;
   if (isRequest(input)) url = input.url;else {
     url = input;
     input = {};
   }
-  var method = init.method || input.method || "GET";
+  var method = init.method || input.method || 'GET';
   method = method.toUpperCase();
   var lines = ["".concat(method, " ").concat(url, " HTTP/1.1")];
   var headers = init.headers || input.headers;
@@ -74,25 +74,25 @@ function fetchHttpMessage(input, init) {
   var body = init.body;
 
   if (body !== undefined) {
-    if (~["GET", "HEAD"].indexOf(method)) throw new Error("Option body not valid with method ".concat(method));
+    if (~['GET', 'HEAD'].indexOf(method)) throw new Error("Option body not valid with method ".concat(method));
     /* c8 ignore start */
 
     if (hasBlob && body instanceof Blob) {
-      lines.push("");
+      lines.push('');
       lines.push((0, _blobToString["default"])(body));
     } else if (
     /* c8 ignore stop */
-    typeof body === "string" || body instanceof String ||
+    typeof body === 'string' || body instanceof String ||
     /* c8 ignore start */
     hasBuffer && body instanceof Buffer || hasURLSearchParams && body instanceof URLSearchParams
     /* c8 ignore stop */
     ) {
-      lines.push("");
+      lines.push('');
       lines.push(body.toString());
-    } else throw new Error("Option body should be convertible to a string");
+    } else throw new Error('Option body should be convertible to a string');
   }
 
-  return lines.join("\r\n");
+  return lines.join('\r\n');
 }
 
 module.exports = exports.default;

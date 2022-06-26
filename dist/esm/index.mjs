@@ -1,11 +1,11 @@
 import blobToString from "./blobToString.mjs";
-const hasHeaders = typeof Headers !== "undefined";
-const hasBlob = typeof Blob !== "undefined";
-const hasBuffer = typeof Buffer !== "undefined";
-const hasURLSearchParams = typeof URLSearchParams !== "undefined"; // export type RequestRedirect = 'error' | 'follow' | 'manual';
+const hasHeaders = typeof Headers !== 'undefined';
+const hasBlob = typeof Blob !== 'undefined';
+const hasBuffer = typeof Buffer !== 'undefined';
+const hasURLSearchParams = typeof URLSearchParams !== 'undefined'; // export type RequestRedirect = 'error' | 'follow' | 'manual';
 
 function isRequest(object) {
-  return typeof object === "object";
+  return typeof object === 'object';
 }
 /**
  * Generate an http message string using the fetch API
@@ -17,14 +17,14 @@ function isRequest(object) {
 
 
 export default function fetchHttpMessage(input, init) {
-  if (input === undefined) throw new Error("Input is expected");
+  if (input === undefined) throw new Error('Input is expected');
   if (init === undefined) init = {};
   let url;
   if (isRequest(input)) url = input.url;else {
     url = input;
     input = {};
   }
-  let method = init.method || input.method || "GET";
+  let method = init.method || input.method || 'GET';
   method = method.toUpperCase();
   const lines = [`${method} ${url} HTTP/1.1`];
   const headers = init.headers || input.headers;
@@ -42,24 +42,24 @@ export default function fetchHttpMessage(input, init) {
   const body = init.body;
 
   if (body !== undefined) {
-    if (~["GET", "HEAD"].indexOf(method)) throw new Error(`Option body not valid with method ${method}`);
+    if (~['GET', 'HEAD'].indexOf(method)) throw new Error(`Option body not valid with method ${method}`);
     /* c8 ignore start */
 
     if (hasBlob && body instanceof Blob) {
-      lines.push("");
+      lines.push('');
       lines.push(blobToString(body));
     } else if (
     /* c8 ignore stop */
-    typeof body === "string" || body instanceof String ||
+    typeof body === 'string' || body instanceof String ||
     /* c8 ignore start */
     hasBuffer && body instanceof Buffer || hasURLSearchParams && body instanceof URLSearchParams
     /* c8 ignore stop */
     ) {
-      lines.push("");
+      lines.push('');
       lines.push(body.toString());
-    } else throw new Error("Option body should be convertible to a string");
+    } else throw new Error('Option body should be convertible to a string');
   }
 
-  return lines.join("\r\n");
+  return lines.join('\r\n');
 }
 //# sourceMappingURL=index.mjs.map
