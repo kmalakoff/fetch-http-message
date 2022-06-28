@@ -14,7 +14,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsds build:dist",
+    "build": "tsds build",
     "deploy": "tsds deploy",
     "format": "tsds format",
     "lint": "tsds lint",
@@ -51,7 +51,7 @@
   ],
   "devDependencies": {
     "@types/node": "^18.0.0",
-    "ts-dev-stack": "^0.3.3"
+    "ts-dev-stack": "^0.4.1"
   },
   "engines": {
     "node": ">=0.8"
@@ -64,7 +64,9 @@
     },
     "./*": "./*"
   },
-  "source": "src/index.ts",
+  "tsds": {
+    "source": "src/index.ts"
+  },
   "type": "module",
   "types": "dist/types/index.d.ts",
   "unpkg": "dist/umd/fetch-http-message.js"

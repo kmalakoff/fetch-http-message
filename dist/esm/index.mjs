@@ -1,3 +1,4 @@
+// @ts-ignore
 import blobToString from './blobToString.mjs';
 const hasHeaders = typeof Headers !== 'undefined';
 const hasBlob = typeof Blob !== 'undefined';
