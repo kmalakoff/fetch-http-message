@@ -1,7 +1,7 @@
 {
   "name": "fetch-http-message",
   "description": "Generate an http message string using the fetch API",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "author": {
     "email": "kmalakoff@gmail.com",
     "name": "Kevin Malakoff",
@@ -14,13 +14,12 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsds build:dist",
+    "build": "tsds build",
     "deploy": "tsds deploy",
     "format": "tsds format",
     "lint": "tsds lint",
     "test": "tsds test:node && tsds test:browser",
-    "test:engines": "tsds test:engines",
-    "version": "tsds version"
+    "version2": "tsds version"
   },
   "homepage": "https://github.com/kmalakoff/fetch-http-message#README.md",
   "repository": {
@@ -50,8 +49,8 @@
     "typescript"
   ],
   "devDependencies": {
-    "@types/node": "^18.0.0",
-    "ts-dev-stack": "^0.3.3"
+    "@types/node": "^18.0.1",
+    "ts-dev-stack": "^0.6.5"
   },
   "engines": {
     "node": ">=0.8"
@@ -64,7 +63,9 @@
     },
     "./*": "./*"
   },
-  "source": "src/index.ts",
+  "tsds": {
+    "source": "src/index.ts"
+  },
   "type": "module",
   "types": "dist/types/index.d.ts",
   "unpkg": "dist/umd/fetch-http-message.js"
