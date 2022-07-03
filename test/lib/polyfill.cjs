@@ -1,11 +1,7 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-
 function polyfill() {
-  if (typeof Buffer !== 'undefined' && !Buffer.alloc) {
-    Buffer.alloc = function alloc(length, data) {
-      let buffer = data;
-      while (--length > 0) buffer += data;
-      return new Buffer(buffer);
+  if (typeof Buffer !== 'undefined' && !Buffer.from) {
+    Buffer.from = function from(data) {
+      return new Buffer(data);
     };
   }
 }

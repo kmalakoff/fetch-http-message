@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 module.exports = fetchHttpMessage;
-var _blobToStringJs = _interopRequireDefault(require("./blobToString.js"));
+var _blobToStringTs = _interopRequireDefault(require("./blobToString.js"));
 function fetchHttpMessage(input, init) {
     if (input === undefined) throw new Error("Input is expected");
     if (init === undefined) init = {};
@@ -32,8 +32,8 @@ function fetchHttpMessage(input, init) {
                 _iteratorError = err;
             } finally{
                 try {
-                    if (!_iteratorNormalCompletion && _iterator["return"] != null) {
-                        _iterator["return"]();
+                    if (!_iteratorNormalCompletion && _iterator.return != null) {
+                        _iterator.return();
                     }
                 } finally{
                     if (_didIteratorError) {
@@ -53,7 +53,7 @@ function fetchHttpMessage(input, init) {
         ].indexOf(method)) throw new Error("Option body not valid with method ".concat(method));
         /* c8 ignore start */ if (hasBlob && _instanceof(body, Blob)) {
             lines.push("");
-            lines.push((0, _blobToStringJs).default(body));
+            lines.push((0, _blobToStringTs).default(body));
         } else if (/* c8 ignore stop */ typeof body === "string" || _instanceof(body, String) || /* c8 ignore start */ (hasBuffer && _instanceof(body, Buffer)) || hasURLSearchParams && _instanceof(body, URLSearchParams)) {
             lines.push("");
             lines.push(body.toString());
