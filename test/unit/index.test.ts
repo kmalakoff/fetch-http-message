@@ -99,7 +99,7 @@ describe('fetch-http-message', function () {
       it('Buffer body', function () {
         const message = fetchMessage(url, {
           method: 'POST',
-          body: Buffer.alloc(5, 'a'),
+          body: Buffer.from('aaaaa'),
         });
         assert.equal(message, [`POST ${url} HTTP/1.1`, '', 'aaaaa'].join('\r\n'));
       });
