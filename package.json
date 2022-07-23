@@ -61,6 +61,7 @@
     "version": "tsds version"
   },
   "devDependencies": {
+    "@types/mocha": "^9.1.1",
     "@types/node": "^18.0.6",
     "ts-dev-stack": "^0.6.15"
   },
