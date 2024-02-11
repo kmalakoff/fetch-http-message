@@ -1,4 +1,9 @@
 {
-  "extends": "./node_modules/ts-dev-stack/.depcheckrc.json",
-  "ignores": ["fetch-http-message", "@types/*", "@typescript-eslint/*", "eslint-*"]
+  "extends": "./node_modules/ts-dev-stack/config/.depcheckrc.json",
+  "ignores": [
+    "fetch-http-message",
+    "@types/*",
+    "@typescript-eslint/*",
+    "eslint-*"
+  ]
 }
