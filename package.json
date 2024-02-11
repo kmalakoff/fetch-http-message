@@ -1,60 +1,23 @@
 {
   "name": "fetch-http-message",
-  "description": "Generate an http message string using the fetch API",
   "version": "0.1.8",
-  "author": {
-    "email": "kmalakoff@gmail.com",
-    "name": "Kevin Malakoff",
-    "url": "https://github.com/kmalakoff"
-  },
-  "license": "MIT",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.mjs",
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "build": "tsds build",
-    "deploy": "tsds deploy",
-    "format": "tsds format",
-    "lint": "tsds lint",
-    "test": "tsds test:node && tsds test:browser",
-    "version2": "tsds version"
-  },
+  "description": "Generate an http message string using the fetch API",
+  "keywords": ["apis", "batch", "cross-fetch", "fetch", "form", "gapi", "google", "http", "https", "isomorphic-fetch", "message", "multipart", "node-fetch", "parser", "parser-multipart", "parts", "typescript"],
   "homepage": "https://github.com/kmalakoff/fetch-http-message#README.md",
+  "bugs": {
+    "url": "https://github.com/kmalakoff/fetch-http-message/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/kmalakoff/fetch-http-message.git"
   },
-  "bugs": {
-    "url": "https://github.com/kmalakoff/fetch-http-message/issues"
+  "license": "MIT",
+  "author": {
+    "name": "Kevin Malakoff",
+    "email": "kmalakoff@gmail.com",
+    "url": "https://github.com/kmalakoff"
   },
-  "keywords": [
-    "apis",
-    "batch",
-    "cross-fetch",
-    "fetch",
-    "form",
-    "gapi",
-    "google",
-    "http",
-    "https",
-    "isomorphic-fetch",
-    "message",
-    "multipart",
-    "node-fetch",
-    "parser",
-    "parser-multipart",
-    "parts",
-    "typescript"
-  ],
-  "devDependencies": {
-    "@types/node": "^18.0.1",
-    "ts-dev-stack": "^0.6.5"
-  },
-  "engines": {
-    "node": ">=0.8"
-  },
+  "type": "module",
   "exports": {
     ".": {
       "import": "./dist/esm/index.mjs",
@@ -63,10 +26,29 @@
     },
     "./*": "./*"
   },
+  "main": "dist/cjs/index.js",
+  "unpkg": "dist/umd/fetch-http-message.js",
+  "module": "dist/esm/index.mjs",
+  "types": "dist/types/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsds build",
+    "deploy": "tsds deploy",
+    "format": "biome check --apply src/ test/",
+    "test": "tsds test:node && tsds test:browser",
+    "test:engines": "nvu engines tsds test:node && tsds test:browser",
+    "version": "tsds version"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.5.3",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.11.17",
+    "ts-dev-stack": "^0.9.2"
+  },
+  "engines": {
+    "node": ">=0.8"
+  },
   "tsds": {
     "source": "src/index.ts"
-  },
-  "type": "module",
-  "types": "dist/types/index.d.ts",
-  "unpkg": "dist/umd/fetch-http-message.js"
+  }
 }
