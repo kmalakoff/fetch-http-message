@@ -2,14 +2,14 @@
 export interface HeadersObject {
     [key: string]: string;
 }
-export declare type HeadersInit = Headers | HeadersObject | Record<string, string> | Iterable<readonly [string, string]> | Iterable<Iterable<string>>;
-export declare type BodyInit = Blob | Buffer | URLSearchParams | string;
+export type HeadersInit = Headers | HeadersObject | Record<string, string> | Iterable<readonly [string, string]> | Iterable<Iterable<string>>;
+export type BodyInit = Blob | Buffer | URLSearchParams | string;
 export interface RequestInit {
     body?: BodyInit | null;
     headers?: HeadersInit;
     method?: string;
 }
-export declare type RequestInfo = string | Request;
+export type RequestInfo = string | Request;
 export interface Request {
     readonly headers: Headers | HeadersObject;
     readonly method: string;
