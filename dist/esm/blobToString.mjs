@@ -6,4 +6,4 @@
     x.send();
     URL.revokeObjectURL(u);
     return x.responseText;
-}; /* c8 ignore stop */ 
+} /* c8 ignore stop */ 
