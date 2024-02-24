@@ -1,0 +1,1 @@
+{"version":3,"sources":["blobToString.d.ts"],"sourcesContent":["export default function blobToString(b: Blob): string;\n"],"names":[],"mappings":"AAAA,WAAsD"}
