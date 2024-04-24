@@ -12,8 +12,9 @@
       x.send();
       URL.revokeObjectURL(u);
       return x.responseText;
-  }
+  } /* c8 ignore stop */
 
+  // @ts-ignore
   function _instanceof(left, right) {
       if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) {
           return !!right[Symbol.hasInstance](left);
@@ -84,7 +85,7 @@
           /* c8 ignore start */ if (hasBlob && _instanceof(body, Blob)) {
               lines.push("");
               lines.push(blobToString(body));
-          } else if (/* c8 ignore stop */ typeof body === "string" || _instanceof(body, String) || /* c8 ignore start */ (hasBuffer && _instanceof(body, Buffer)) || hasURLSearchParams && _instanceof(body, URLSearchParams)) {
+          } else if (/* c8 ignore stop */ typeof body === "string" || _instanceof(body, String) || /* c8 ignore start */ hasBuffer && _instanceof(body, Buffer) || hasURLSearchParams && _instanceof(body, URLSearchParams)) {
               lines.push("");
               lines.push(body.toString());
           } else throw new Error("Option body should be convertible to a string");
