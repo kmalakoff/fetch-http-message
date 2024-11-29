@@ -49,7 +49,7 @@
     "typescript"
   ],
   "devDependencies": {
-    "@types/node": "^18.0.1",
+    "@types/node": "^22.10.1",
     "ts-dev-stack": "^0.6.5"
   },
   "engines": {
