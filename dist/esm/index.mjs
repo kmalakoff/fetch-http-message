@@ -44,10 +44,10 @@ function isRequest(object) {
         /* c8 ignore start */ if (hasBlob && body instanceof Blob) {
             lines.push('');
             lines.push(blobToString(body));
-        } else if (/* c8 ignore stop */ typeof body === 'string' || body instanceof String || /* c8 ignore start */ (hasBuffer && body instanceof Buffer) || hasURLSearchParams && body instanceof URLSearchParams) {
+        } else if (/* c8 ignore stop */ typeof body === 'string' || body instanceof String || /* c8 ignore start */ hasBuffer && body instanceof Buffer || hasURLSearchParams && body instanceof URLSearchParams) {
             lines.push('');
             lines.push(body.toString());
         } else throw new Error('Option body should be convertible to a string');
     }
     return lines.join('\r\n');
-};
+}
