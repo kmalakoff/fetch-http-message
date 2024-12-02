@@ -63,7 +63,7 @@
     "@biomejs/biome": "^1.9.4",
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.10.1",
-    "ts-dev-stack": "^0.17.1"
+    "ts-dev-stack": "^0.18.0"
   },
   "engines": {
     "node": ">=0.8"
