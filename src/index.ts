@@ -45,7 +45,7 @@ export default function fetchHttpMessage(input: RequestInfo, init?: RequestInit)
   if (input === undefined) throw new Error('Input is expected');
   if (init === undefined) init = {};
 
-  let url;
+  let url: string;
   if (isRequest(input)) url = (input as Request).url;
   else {
     url = input as string;

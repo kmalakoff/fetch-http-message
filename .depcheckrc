@@ -1,0 +1,1 @@
+ignores: ["fetch-http-message", "ts-dev-stack",  "@types/*"]
