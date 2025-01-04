@@ -1,5 +1,4 @@
-// @ts-ignore
-import blobToString from './blobToString.ts';
+import blobToString from './blobToString';
 
 export interface HeadersObject {
   [key: string]: string;
@@ -45,7 +44,7 @@ export default function fetchHttpMessage(input: RequestInfo, init?: RequestInit)
   if (input === undefined) throw new Error('Input is expected');
   if (init === undefined) init = {};
 
-  let url;
+  let url: string;
   if (isRequest(input)) url = (input as Request).url;
   else {
     url = input as string;
@@ -60,6 +59,7 @@ export default function fetchHttpMessage(input: RequestInfo, init?: RequestInit)
   if (headers !== undefined) {
     /* c8 ignore start */
     if (hasHeaders && headers instanceof Headers) {
+      // @ts-ignore
       for (const pair of (headers as Headers).entries()) lines.push(`${pair[0]}: ${pair[1]}`);
     } else {
       /* c8 ignore stop */
