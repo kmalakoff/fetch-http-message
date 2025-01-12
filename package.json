@@ -65,7 +65,7 @@
     "@biomejs/biome": "^1.9.4",
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.10.5",
-    "tsds-web-test-runner": "^1.11.22"
+    "tsds-web-test-runner": "^1.13.6"
   },
   "engines": {
     "node": ">=0.8"
