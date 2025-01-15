@@ -1,1 +1,1 @@
-ignores: ["fetch-http-message", "@types/*", "@biomejs/*", "tsds-web-test-runner"]
+ignores: ["fetch-http-message", "tsds-web-test-runner"]
