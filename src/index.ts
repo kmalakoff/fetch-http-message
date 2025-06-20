@@ -59,8 +59,7 @@ export default function fetchHttpMessage(input: RequestInfo, init?: RequestInit)
   if (headers !== undefined) {
     /* c8 ignore start */
     if (hasHeaders && headers instanceof Headers) {
-      // @ts-ignore
-      for (const pair of (headers as Headers).entries()) lines.push(`${pair[0]}: ${pair[1]}`);
+      (headers as Headers).forEach((value, key) => lines.push(`${key}: ${value}`));
     } else {
       /* c8 ignore stop */
       for (const key in headers as HeadersObject) lines.push(`${key}: ${headers[key]}`);
