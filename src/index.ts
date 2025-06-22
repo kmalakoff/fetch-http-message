@@ -1,8 +1,6 @@
 import blobToString from './blobToString.ts';
 
-export interface HeadersObject {
-  [key: string]: string;
-}
+export type HeadersObject = Record<string, string>;
 
 // https://github.com/node-fetch/node-fetch/blob/main/%40types/index.d.ts
 export type HeadersInit = Headers | HeadersObject | Record<string, string> | Iterable<readonly [string, string]> | Iterable<Iterable<string>>;
