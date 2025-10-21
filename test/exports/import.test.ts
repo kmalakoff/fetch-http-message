@@ -1,5 +1,4 @@
 import assert from 'assert';
-// @ts-ignore
 import fetchMessage from 'fetch-http-message';
 
 const url = 'https://test.com/';
