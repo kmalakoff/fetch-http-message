@@ -1,5 +1,4 @@
 import assert from 'assert';
-// @ts-ignore
 import fetchMessage, { type HeadersObject } from 'fetch-http-message';
 import '../polyfills.ts';
 
