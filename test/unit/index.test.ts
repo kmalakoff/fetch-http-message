@@ -1,6 +1,6 @@
 import assert from 'assert';
 import fetchMessage, { type HeadersObject } from 'fetch-http-message';
-import '../polyfills.ts';
+import { bufferFrom } from '../../src/compat.ts';
 
 const url = 'https://test.com/';
 
@@ -99,7 +99,7 @@ describe('fetch-http-message', () => {
       it('Buffer body', () => {
         const message = fetchMessage(url, {
           method: 'POST',
-          body: Buffer.from('aaaaa'),
+          body: bufferFrom('aaaaa'),
         });
         assert.equal(message, [`POST ${url} HTTP/1.1`, '', 'aaaaa'].join('\r\n'));
       });
