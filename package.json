@@ -1,6 +1,6 @@
 {
   "name": "fetch-http-message",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Generate an http message string using the fetch API",
   "keywords": [
     "apis",
