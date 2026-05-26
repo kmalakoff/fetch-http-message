@@ -1,12 +1,12 @@
 import assert from 'assert';
-import fetchMessage, { type HeadersObject } from 'fetch-http-message';
+import fetchMessage, { type HeadersObject, type RequestInfo } from 'fetch-http-message';
 import { bufferFrom } from '../../src/compat.ts';
 
 const url = 'https://test.com/';
 
 describe('fetch-http-message', () => {
   it('error: no url', () => {
-    assert.throws(() => fetchMessage(undefined));
+    assert.throws(() => fetchMessage(undefined as unknown as RequestInfo));
   });
 
   it('defaults', () => {
