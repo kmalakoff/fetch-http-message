@@ -27,7 +27,7 @@ export interface Request {
   readonly url: string;
 }
 
-function isRequest(object) {
+function isRequest(object: unknown) {
   return typeof object === 'object';
 }
 
@@ -62,7 +62,7 @@ export default function fetchHttpMessage(input: RequestInfo, init?: RequestInit)
       });
     } else {
       /* c8 ignore stop */
-      for (const key in headers as HeadersObject) lines.push(`${key}: ${headers[key]}`);
+      for (const key in headers as HeadersObject) lines.push(`${key}: ${(headers as HeadersObject)[key]}`);
     }
   }
 
