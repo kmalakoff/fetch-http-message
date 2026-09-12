@@ -1,3 +1,4 @@
+import "../lib/polyfill.cjs";
 import { assert } from "chai";
 import fetchMessage, { HeadersObject } from "fetch-http-message";
 
@@ -91,6 +92,7 @@ describe("fetch-http-message", function () {
     });
 
     typeof Blob === "undefined" ||
+      typeof XMLHttpRequest === "undefined" ||
       it("Blob body", function () {
         const message = fetchMessage(url, {
           method: "POST",
@@ -101,13 +103,6 @@ describe("fetch-http-message", function () {
 
     typeof Buffer === "undefined" ||
       it("Buffer body", function () {
-        if (!Buffer.alloc) {
-          Buffer.alloc = function alloc(length: number, data: string) {
-            let buffer = data;
-            while (--length > 0) buffer += data;
-            return new Buffer(buffer);
-          };
-        }
         const message = fetchMessage(url, {
           method: "POST",
           body: Buffer.alloc(5, "a"),
