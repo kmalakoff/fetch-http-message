@@ -2,6 +2,10 @@
 
 Generate an http message string using the fetch API for browser and node
 
+```bash
+npm install fetch-http-message
+```
+
 ### Example 1
 
 ```typescript
@@ -13,6 +17,8 @@ console.log(message); // "PATCH https://test.com/ HTTP/1.1\r\nheader1: value 1\r
 ```
 
 ### Example 2
+
+This form uses the Fetch API's global `Headers` constructor, which is available in browsers and newer Node.js versions.
 
 ```typescript
 import fetchMessage from 'fetch-http-message';
